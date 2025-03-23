@@ -1,0 +1,15 @@
+/* Title */
+h2 {
+  color: #33312e;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+p {
+  color: #33312e;
+  font-size: 18;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  text-align: justify;
+  width: 80%;
+}

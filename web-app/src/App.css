@@ -1,0 +1,7 @@
+/* Page Container */
+.page {
+  flex: 1;
+  margin-left: 250px; /* Offset the page content area by the width of the sidebar. */
+  overflow-y: auto;  /* Allow scrolling if content is too large to fit. */
+  padding-top: 20px;
+}

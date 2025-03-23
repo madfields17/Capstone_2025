@@ -1,0 +1,31 @@
+.team-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(2, 1fr); /* Create two columns. */
+  padding: 0 30px;
+}
+
+.team-member {
+  align-items: center; /* Align image and text horizontally. */
+  border: 1px solid #e7e6e3;
+  display: flex;
+  padding: 15px;
+}
+
+.team-image {
+  height: 300px;
+  object-fit: cover; 
+  width: 300px; 
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column; /* Keep name and LinkedIn in a column. */
+}
+
+.team-name {
+  font-weight: bold;
+  margin: 10px 10px;
+  white-space: nowrap;
+}
+

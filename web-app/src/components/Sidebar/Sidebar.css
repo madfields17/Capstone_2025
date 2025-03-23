@@ -1,0 +1,46 @@
+/* Container */
+.sidebar {
+  background-color: #e7e6e3;
+  height: 100%; 
+  padding-top: 20px;
+  position: fixed; /* Fixed to the left side of the screen. */
+  width: 250px; 
+}
+
+/* Title */
+.sidebar h2 {
+  color: #33312e;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Menu List */
+.sidebar ul {
+  list-style-type: none; /* Remove bullet points. */
+  padding: 0;
+}
+
+/* Menu Items */
+.sidebar ul li {
+  padding: 8px 0;
+  text-align: left;
+}
+
+/* Menu Items (Text) */
+.sidebar ul li a {
+  color: #33312e;
+  display: block; /* Make the entire box clickable. */
+  padding: 12px 20px; 
+  font-size: 18px;
+  text-decoration: none; /* Remove underline. */
+}
+
+/* Menu Items (Hover Effect) */
+.sidebar ul li a:hover {
+  background-color: #bdb6ab; 
+}
+
+/* Menu Items (Selected) */
+.sidebar ul li a.selected {
+  background-color: #aa7b4f; 
+}
