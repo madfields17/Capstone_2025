@@ -5,7 +5,8 @@ from torch import Tensor
 from torch.utils.data import Dataset
 from pathlib import Path
 import torchaudio
-
+import pandas as pd
+import os
 
 ___author__ = "Hemlata Tak, Jee-weon Jung"
 __email__ = "tak@eurecom.fr, jeeweon.jung@navercorp.com"
@@ -155,3 +156,70 @@ class Dataset_Mozilla(Dataset):
         waveform = torch.tensor(waveform, dtype=torch.float32)
 
         return waveform, str(file_path)
+
+    
+class NONBIASDataset(Dataset):
+    def __init__(self, real_metadata_path, spoof_metadata_path, split, base_dir, cut=64600, transform=None):
+        """
+        Args:
+            real_metadata_path (str): Path to CSV for real audio.
+            spoof_metadata_path (str): Path to CSV for spoofed audio.
+            split (str): 'train' or 'val' to select subset of data.
+            base_dir (str): Path to folder containing audio files.
+            cut (int): Length in samples to pad/trim to (default: 64600).
+            transform (callable, optional): Optional transform to apply on the audio tensor.
+        """
+        assert split in ["train", "val"], "split must be 'train' or 'val'"
+        self.cut = cut
+        self.transform = transform
+        self.base_dir = base_dir
+
+        # Load and standardize both metadata files
+        real_df = pd.read_csv(real_metadata_path)
+        spoof_df = pd.read_csv(spoof_metadata_path)
+
+        real_df = real_df.rename(columns={"file_name": "file_name"})
+        spoof_df = spoof_df.rename(columns={"Filename": "file_name"})
+
+        real_df = real_df[["file_name", "spoof_or_real", "train_or_val"]]
+        spoof_df = spoof_df[["file_name", "spoof_or_real", "train_or_val"]]
+
+        # Add .wav extension
+        real_df["file_name"] += ".wav"
+        spoof_df["file_name"] += ".wav"
+
+        # Combine and filter by split
+        combined_df = pd.concat([real_df, spoof_df], ignore_index=True)
+        combined_df = combined_df[combined_df["train_or_val"] == split]
+
+        # Filter by files that actually exist in base_dir
+        existing_files = set(os.listdir(base_dir))
+        combined_df = combined_df[combined_df["file_name"].isin(existing_files)].reset_index(drop=True)
+
+        self.metadata = combined_df
+
+    def __len__(self):
+        return len(self.metadata)
+
+    def __getitem__(self, idx):
+        row = self.metadata.iloc[idx]
+        file_path = os.path.join(self.base_dir, row["file_name"])
+        label = 1 if row["spoof_or_real"].lower() == "real" else 0
+
+        waveform, _ = torchaudio.load(file_path)
+        waveform = waveform.mean(dim=0).numpy()
+
+        # Pad or crop
+        x = pad_random(waveform, self.cut)
+
+        x = torch.tensor(x, dtype=torch.float32)
+        if self.transform:
+            x = self.transform(x)
+
+        return x, label
+    
+
+# Example usage:
+# base_dir = "path/to/AASIST/aasist_env/training_data/train"
+# metadata_path = "path/to/train_metadata.csv"
+# dataset = AASISTDataset(base_dir, metadata_path)

@@ -20,6 +20,7 @@ jupyter = "^1.1.1"
 matplotlib = "^3.10.1"
 seaborn = "^0.13.2"
 scipy = "^1.15.2"
+gdown = "^5.2.0"
 
 
 [build-system]

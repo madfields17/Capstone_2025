@@ -75,20 +75,20 @@ def main(args: argparse.Namespace) -> None:
     model_tag = output_dir / model_tag
     model_save_path = model_tag / "weights"
     # eval_score_path = model_tag / config["eval_output"]
-    eval_score_path = model_tag / "mozilla_evaluation_results.csv"  # Ensure CSV format
+    eval_score_path = model_tag / "mozilla_evaluation_results5.csv"  # Ensure CSV format
     writer = SummaryWriter(model_tag)
     os.makedirs(model_save_path, exist_ok=True)
     copy(args.config, model_tag / "config.conf")
 
     # set device
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"Device: {device}")
-    if device == "cpu":
-        raise ValueError("GPU not detected!")
+    # print(f"Device: {device}")
+    # if device == "cpu":
+    #     raise ValueError("GPU not detected!")
 
     # Allow CPU execution (Remove the forced error)
-    # if device == "cpu":
-    #     print("⚠ Warning: Running on CPU. This may be significantly slower.")
+    if device == "cpu":
+        print("⚠ Warning: Running on CPU. This may be significantly slower.")
 
     # define model architecture
     model = get_model(model_config, device)
@@ -349,7 +349,7 @@ def produce_evaluation_file(data_loader, model, device, save_path):
         with torch.no_grad():
             _, batch_out = model(batch_x)
             batch_probs = torch.softmax(batch_out, dim=1)  # Convert logits to probabilities
-            batch_score = batch_probs[:, 1].cpu().numpy().ravel()  # Spoof probability 
+            batch_score = batch_probs[:, 1].cpu().numpy().ravel()
         
         for file_path, score in zip(file_paths, batch_score):
             results.append({"wav_path": str(file_path), "prediction_score": score})  # Ensure path is a string
