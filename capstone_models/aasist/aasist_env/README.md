@@ -98,4 +98,17 @@ Ensure Poetry is in your PATH:
 export PATH="$HOME/.poetry/bin:$PATH"
 ```
 
+## 5. Created new dataset
+uploaded dataset to Standardized_full_data. Two metadata files 'Metadata TTS data_full.csv' and 'REAL_train_and_val_cleaned.csv' (cleaned for .mp3 and .wav extensions) have dataset insights.
+
+changed code to main2.py to point the model to the next dataset.
+Tested with ../Training_test/ and ../Val_test/, update main2.py to change these to proper directory. Also included additional updates for efficient pipeline.
+
+Next steps:
+- move dataset to aws
+- train model with ubuntu setup and full dataset.
+- pull the weights and evaluate it against the new eval set
+- fine-tune model.
+
+
 ---
