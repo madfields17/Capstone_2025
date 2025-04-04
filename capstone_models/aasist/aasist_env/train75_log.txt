@@ -1,0 +1,116 @@
+✅ Loaded config from: ./config/AASIST.conf
+🧩 Config keys: ['database_path', 'asv_score_path', 'model_path', 'batch_size', 'num_epochs', 'loss',
+ 'track', 'eval_all_best', 'eval_output', 'cudnn_deterministic_toggle', 'cudnn_benchmark_toggle', 'mo
+del_config', 'optim_config']
+Device: cuda
+
+🧪 Number of training samples: 6980
+📦 Number of training batches: 290
+👤 Real samples in train: 2566
+👻 Spoof samples in train: 4414
+
+🧪 Number of validation samples: 1791
+📦 Number of validation batches: 75
+👤 Real samples in val: 667
+👻 Spoof samples in val: 1124
+
+📂 Files listed in metadata: 1791
+📁 Files actually in folder: 1791
+🚫 Missing files from folder: 0
+➕ Extra files not in metadata: 0
+Start training epoch000
+Training: 100%|████████████████████████████████████████| 290/290 [08:16<00:00,  1.71s/it, loss=0.478]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:1.46695, dev_eer: 0.112
+best model find at epoch 0
+Saving epoch 0 for swa
+Start training epoch001
+Training: 100%|████████████████████████████████████████| 290/290 [08:16<00:00,  1.71s/it, loss=0.282]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:0.33165, dev_eer: 0.093
+best model find at epoch 1
+Saving epoch 1 for swa
+Start training epoch002
+Training: 100%|████████████████████████████████████████| 290/290 [08:15<00:00,  1.71s/it, loss=0.135]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:0.25249, dev_eer: 0.087
+best model find at epoch 2
+Saving epoch 2 for swa
+Start training epoch003
+Training: 100%|████████████████████████████████████████| 290/290 [08:15<00:00,  1.71s/it, loss=0.238]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:0.22903, dev_eer: 0.094
+Start training epoch004
+Training: 100%|████████████████████████████████████████| 290/290 [08:15<00:00,  1.71s/it, loss=0.221]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:0.20217, dev_eer: 0.070
+best model find at epoch 4
+Saving epoch 4 for swa
+Start training epoch005
+Training: 100%|███████████████████████████████████████| 290/290 [08:15<00:00,  1.71s/it, loss=0.0822]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+
+
+...
+
+Loss:0.00347, dev_eer: 0.023                                                                  [0/853]
+Start training epoch068
+Training: 100%|██████████████████████████████████████| 290/290 [08:07<00:00,  1.68s/it, loss=0.00214]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:0.00455, dev_eer: 0.021
+Start training epoch069
+Training: 100%|████████████████████████████████████████| 290/290 [08:08<00:00,  1.68s/it, loss=0.008]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:0.00551, dev_eer: 0.020
+Start training epoch070
+Training:  12%|████▍                                 | 34/290 [00:57<07:11,  1.69s/it, loss=0.000288]
+Training: 100%|█████████████████████████████████████| 290/290 [08:09<00:00,  1.69s/it, loss=0.000104]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:0.00379, dev_eer: 0.020
+Start training epoch071
+Training: 100%|█████████████████████████████████████| 290/290 [08:07<00:00,  1.68s/it, loss=0.000481]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:0.00596, dev_eer: 0.018
+best model find at epoch 71
+Saving epoch 71 for swa
+Start training epoch072
+Training: 100%|██████████████████████████████████████| 290/290 [08:07<00:00,  1.68s/it, loss=0.00515]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:0.00380, dev_eer: 0.022
+Start training epoch073
+Training: 100%|██████████████████████████████████████| 290/290 [08:07<00:00,  1.68s/it, loss=0.00172]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:0.00278, dev_eer: 0.021
+Start training epoch074
+Training: 100%|██████████████████████████████████████| 290/290 [08:07<00:00,  1.68s/it, loss=9.23e-5]
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score.txt
+DONE.
+Loss:0.00697, dev_eer: 0.021
+Start final evaluation
+✅ Logit scores saved to exp_result/NB_AASIST_ep75_bs24/metrics/val_score_swa.txt
+📌 Final SWA EER: 0.041
+ubuntu@ip-172-31-77-47:~/Capstone_2025/capstone_models/aasist/aasist_env$ 
+ubuntu@ip-172-31-77-47:~/Capstone_2025/capstone_models/aasist/aasist_env$ poetry run python export_ee
+r_threshold.py   --config ./config/AASIST.conf   --weights ./exp_result/NB_AASIST_ep75_bs24/weights/s
+wa.pth   --output_dir ./exp_result/NB_AASIST_ep75_bs24/metrics
+✅ EER: 0.0436, Threshold: 0.9094
+📄 Saved to: exp_result/NB_AASIST_ep75_bs24/metrics/swa_EER_threshold.txt
+ubuntu@ip-172-31-77-47:~/Capstone_2025/capstone_models/aasist/aasist_env$ 
+ubuntu@ip-172-31-77-47:~/Capstone_2025/capstone_models/aasist/aasist_env$ poetry run python export_ee
+r_threshold.py   --config ./config/AASIST.conf   --weights ./exp_result/NB_AASIST_ep75_bs24/weights/$
+poch_71_0.018.pth   --output_dir ./exp_result/NB_AASIST_ep75_bs24/metrics
+✅ EER: 0.0214, Threshold: 0.9510
+📄 Saved to: exp_result/NB_AASIST_ep75_bs24/metrics/epoch_71_0.018_EER_threshold.txt
+ubuntu@ip-172-31-77-47:~/Capstone_2025/capstone_models/aasist/aasist_env$ 
+
