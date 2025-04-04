@@ -44,7 +44,7 @@ def main(args: argparse.Namespace) -> None:
     optim_config = config["optim_config"]
     optim_config["epochs"] = config["num_epochs"]
     track = config["track"]
-    assert track in ["LA", "PA", "DF"], "Invalid track given"
+    assert track in ["LA", "PA", "DF", "NB"], "Invalid track given"
     if "eval_all_best" not in config:
         config["eval_all_best"] = "True"
     if "freq_aug" not in config:
@@ -75,7 +75,7 @@ def main(args: argparse.Namespace) -> None:
     model_tag = output_dir / model_tag
     model_save_path = model_tag / "weights"
     # eval_score_path = model_tag / config["eval_output"]
-    eval_score_path = model_tag / "mozilla_evaluation_results5.csv"  # Ensure CSV format
+    eval_score_path = model_tag / "mozilla_evaluation_results6.csv"  # Ensure CSV format
     writer = SummaryWriter(model_tag)
     os.makedirs(model_save_path, exist_ok=True)
     copy(args.config, model_tag / "config.conf")
