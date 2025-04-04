@@ -96,16 +96,16 @@ def main(args: argparse.Namespace) -> None:
 
     train_dataset = NONBIASDataset(
         real_metadata_path="./Standardized_full_data/REAL_train_and_val_cleaned.csv",
-        spoof_metadata_path="./Standardized_full_data/Metadata TTS data_full.csv",
+        spoof_metadata_path="./Standardized_full_data/Metadata TTS data_full_new.csv",
         split="train",
-        base_dir="./Standardized_full_data/Training_test"
+        base_dir="./Standardized_full_data/Training"
     )
 
     val_dataset = NONBIASDataset(
         real_metadata_path="./Standardized_full_data/REAL_train_and_val_cleaned.csv",
-        spoof_metadata_path="./Standardized_full_data/Metadata TTS data_full.csv",
+        spoof_metadata_path="./Standardized_full_data/Metadata TTS data_full_new.csv",
         split="val",
-        base_dir="./Standardized_full_data/Val_test"
+        base_dir="./Standardized_full_data/Val"
     )
 
     gen = torch.Generator()
@@ -113,50 +113,50 @@ def main(args: argparse.Namespace) -> None:
     trn_loader = DataLoader(train_dataset, shuffle=True, batch_size=config["batch_size"], drop_last=True, pin_memory=True, worker_init_fn=seed_worker, generator=gen)
     val_loader = DataLoader(val_dataset, shuffle=False, batch_size=config["batch_size"], drop_last=False, pin_memory=True)
     
-    # DEBUG: Check which files are expected vs. available
-    expected_files = val_dataset.metadata["file_name"]
-    available_files = pd.Series(os.listdir(val_dataset.base_dir))
-    available_files = available_files[available_files.str.endswith(".wav")]
+    # # DEBUG: Check which files are expected vs. available
+    # expected_files = val_dataset.metadata["file_name"]
+    # available_files = pd.Series(os.listdir(val_dataset.base_dir))
+    # available_files = available_files[available_files.str.endswith(".wav")]
 
-    # What's in metadata but not in the folder
-    missing_files = expected_files[~expected_files.isin(available_files)]
-    # What's in the folder but not in metadata
-    extra_files = available_files[~available_files.isin(expected_files)]
+    # # What's in metadata but not in the folder
+    # missing_files = expected_files[~expected_files.isin(available_files)]
+    # # What's in the folder but not in metadata
+    # extra_files = available_files[~available_files.isin(expected_files)]
 
-    # For train set
-    print(f"\n🧪 Number of training samples: {len(train_dataset)}")
-    print(f"📦 Number of training batches: {len(trn_loader)}")
+    # # For train set
+    # print(f"\n🧪 Number of training samples: {len(train_dataset)}")
+    # print(f"📦 Number of training batches: {len(trn_loader)}")
 
-    train_labels = pd.Series([label for _, label in train_dataset])
-    num_real_train = (train_labels == 1).sum()
-    num_spoof_train = (train_labels == 0).sum()
-    print(f"👤 Real samples in train: {num_real_train}")
-    print(f"👻 Spoof samples in train: {num_spoof_train}")
+    # train_labels = pd.Series([label for _, label in train_dataset])
+    # num_real_train = (train_labels == 1).sum()
+    # num_spoof_train = (train_labels == 0).sum()
+    # print(f"👤 Real samples in train: {num_real_train}")
+    # print(f"👻 Spoof samples in train: {num_spoof_train}")
 
-    # For val set
-    print(f"\n🧪 Number of validation samples: {len(val_dataset)}")
-    print(f"📦 Number of validation batches: {len(val_loader)}")
+    # # For val set
+    # print(f"\n🧪 Number of validation samples: {len(val_dataset)}")
+    # print(f"📦 Number of validation batches: {len(val_loader)}")
 
-    val_labels = pd.Series([label for _, label in val_dataset])
-    num_real_val = (val_labels == 1).sum()
-    num_spoof_val = (val_labels == 0).sum()
-    print(f"👤 Real samples in val: {num_real_val}")
-    print(f"👻 Spoof samples in val: {num_spoof_val}")
+    # val_labels = pd.Series([label for _, label in val_dataset])
+    # num_real_val = (val_labels == 1).sum()
+    # num_spoof_val = (val_labels == 0).sum()
+    # print(f"👤 Real samples in val: {num_real_val}")
+    # print(f"👻 Spoof samples in val: {num_spoof_val}")
 
-    # File checks (assumes this is run inside the Dataset class or you have the data available)
-    print(f"\n📂 Files listed in metadata: {len(expected_files)}")
-    print(f"📁 Files actually in folder: {len(available_files)}")
-    print(f"🚫 Missing files from folder: {len(missing_files)}")
-    print(f"➕ Extra files not in metadata: {len(extra_files)}")
+    # # File checks (assumes this is run inside the Dataset class or you have the data available)
+    # print(f"\n📂 Files listed in metadata: {len(expected_files)}")
+    # print(f"📁 Files actually in folder: {len(available_files)}")
+    # print(f"🚫 Missing files from folder: {len(missing_files)}")
+    # print(f"➕ Extra files not in metadata: {len(extra_files)}")
 
-    # Optional: print some sample filenames
-    if not missing_files.empty:
-        print("\n❗ Missing file examples:")
-        print(missing_files.head())
+    # # Optional: print some sample filenames
+    # if not missing_files.empty:
+    #     print("\n❗ Missing file examples:")
+    #     print(missing_files.head())
 
-    if not extra_files.empty:
-        print("\n📎 Extra file examples:")
-        print(extra_files.head())
+    # if not extra_files.empty:
+    #     print("\n📎 Extra file examples:")
+    #     print(extra_files.head())
 
     eval_set = Dataset_Mozilla(base_dir="mozilla_evaluation_wav", use_random_pad=True)  # Target the WAV files
     eval_loader = DataLoader(eval_set,
