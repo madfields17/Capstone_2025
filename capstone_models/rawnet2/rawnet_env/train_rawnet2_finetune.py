@@ -84,7 +84,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 swa_model = AveragedModel(model)
 swa_scheduler = SWALR(optimizer, swa_lr=5e-5)
 swa_start = 30
-num_epochs = 3
+num_epochs = 75
 
 # === Function to Compute EER and Threshold ===
 def compute_eer(y_true, y_score):
