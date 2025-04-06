@@ -75,7 +75,9 @@ with open("model_config_RawNet.yaml", 'r') as f:
 
 # === Load Pretrained RawNet2 ===
 model = RawNetBaseline(config['model'], device).to(device)
-model.load_state_dict(torch.load("pre_trained_DF_RawNet2.pth", map_location=device))
+# model.load_state_dict(torch.load("pre_trained_DF_RawNet2.pth", map_location=device))
+model_path = Path("Standardized_full_data/pre_trained_DF_RawNet2.pth")
+model.load_state_dict(torch.load(model_path, map_location=device))
 print("Loaded pre-trained RawNet2")
 
 # === Set Up Training ===
