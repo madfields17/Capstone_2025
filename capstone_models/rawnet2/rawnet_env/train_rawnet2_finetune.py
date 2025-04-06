@@ -46,7 +46,7 @@ class DeepfakeAudioDataset(Dataset):
         if not file_path.exists():
             print(f"Missing file: {file_path}")
             return torch.zeros(64600), label, 64600  # dummy waveform if missing
-        waveform, sr = torchaudio.load(file_path)
+        waveform, sr = torchaudio.load(file_path, backend="soundfile")
         waveform = waveform.mean(dim=0, keepdim=True)  # Convert to mono
         return waveform.squeeze(0), label, waveform.shape[1]  # (T,), label, length
 

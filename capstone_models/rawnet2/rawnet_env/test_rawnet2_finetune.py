@@ -132,7 +132,10 @@ def group_metrics(df, group_col):
         if len(gdf) < 2:
             continue
         cm = confusion_matrix(gdf['True Label'], gdf['Predicted Label'])
-        tn, fp = cm[0][0], cm[0][1] if cm.shape == (1, 2) else (0, 0)
+        if cm.shape == (1, 2):
+            tn, fp = cm[0][0], cm[0][1]
+        else:
+            tn, fp = 0, 0
         tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0
         fpr = fp / (fp + tn) if (fp + tn) > 0 else 0.0
         records.append({group_col: group, "TNR": tnr, "FPR": fpr})

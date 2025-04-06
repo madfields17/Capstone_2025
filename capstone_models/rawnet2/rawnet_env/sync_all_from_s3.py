@@ -15,7 +15,7 @@ def sync_entire_bucket(bucket: str, local_dir: str = "./s3_data"):
         exit(1)
 
 if __name__ == "__main__":
-    BUCKET = "audio-deepfake-data"
+    BUCKET = "audio-deepfake-training-data"
     LOCAL_DIR = "./Standardized_full_data"  # All your code already expects this base path
 
     sync_entire_bucket(BUCKET, LOCAL_DIR)
