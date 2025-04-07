@@ -117,7 +117,7 @@ pred_df = pd.DataFrame({
     "file_name": filenames,
     "True Label": y_true,
     "Predicted Label": y_pred,
-    "Spoof Probability": y_scores
+    "Bonafide Probability": y_scores
 })
 
 # Merge with metadata
@@ -168,5 +168,5 @@ plot_group_metrics(region_metrics, "region")
 print("Saved TNR/FPR plots by gender and region.")
 
 # === Save detailed results ===
-merged_df.to_csv("evaluation_results_real_test_set.csv", index=False)
-print("Saved detailed results to evaluation_results_real_test_set.csv")
+merged_df.to_csv("evaluation_results_real_test_set_finetuned.csv", index=False)
+print("Saved detailed results to evaluation_results_real_test_set_finetuned.csv")
