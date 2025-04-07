@@ -1,0 +1,12 @@
+gender,TNR,FPR,Group,region
+female,0.07399103139013453,0.9260089686098655,gender,
+male,0.07623318385650224,0.9237668161434978,gender,
+,0.03,0.97,region,british isles (uk and ireland)
+,0.0,1.0,region,"caribbean (english-speaking nations like jamaica, trinidad, barbados, bahamas)"
+,0.15,0.85,region,"east asia (china, taiwan, hong kong, japan, korea)"
+,0.07608695652173914,0.9239130434782609,region,"middle east & central asia (arabic-speaking countries, iran, and central asia)"
+,0.12,0.88,region,north america (us and canada)
+,0.08,0.92,region,"south asia (india, pakistan, bangladesh, sri lanka, nepal)"
+,0.05,0.95,region,"southeast asia (singapore, malaysia, the philippines, indonesia, thailand, vietnam, myanmar, cambodia, and others)"
+,0.16,0.84,region,"sub-saharan africa (all countries south of the sahara desert, excluding south africa)"
+,0.01,0.99,region,"western europe (france, germany, spain, italy, etc.)"
