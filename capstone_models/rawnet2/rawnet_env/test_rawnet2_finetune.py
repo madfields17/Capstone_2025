@@ -40,7 +40,7 @@ class DeepfakeAudioDataset(Dataset):
 
     def __getitem__(self, idx):
         row = self.df.iloc[idx]
-        label = 0  # all real samples
+        label = 1  # all real samples
         file_path = self.base_path / row['file_name']
         if not file_path.exists():
             print(f"Missing file: {file_path}")
@@ -81,7 +81,7 @@ y_true, y_pred, y_scores, filenames = [], [], [], []
 with torch.no_grad():
     for batch_x, batch_y, batch_filenames in tqdm(dataloader, desc="Evaluating on Real Test Set"):
         outputs = model(batch_x)
-        probs = torch.softmax(outputs, dim=1)[:, 1]  # Spoof probability
+        probs = torch.softmax(outputs, dim=1)[:, 1]  # Bonafide probability
 
         preds = (probs >= best_threshold).long()
 

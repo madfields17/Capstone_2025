@@ -14,12 +14,12 @@ from tqdm import tqdm
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # === Define Paths ===
-metadata_file = Path("metadata.csv")
-wav_dir = Path("mozilla_evaluation_wav")
-output_file = Path("rawnet_evaluation_results.csv")
-merge_output_file = Path("final_results_rawnet2.csv")
+metadata_file = Path("Standardized_full_data/new_evaluation_metadata.csv")
+wav_dir = Path("Standardized_full_data/new_evaluation_wav")
+output_file = Path("rawnet2_evaluation_results_new_baseline.csv")
+merge_output_file = Path("final_results_rawnet2_new_baseline.csv")
 rawnet2_config_path = Path("model_config_RawNet.yaml")
-rawnet2_model_path = Path("pre_trained_DF_RawNet2.pth")
+rawnet2_model_path = Path("Standardized_full_data/pre_trained_DF_RawNet2.pth")
 
 # === Load YAML Configuration ===
 with open(rawnet2_config_path, 'r') as f_yaml:
@@ -63,7 +63,7 @@ def collate_fn(batch):
     return waveforms, file_names, lengths
 
 # === Create DataLoader ===
-dataset = Dataset_Mozilla_RawNet2(base_dir="mozilla_evaluation_wav")
+dataset = Dataset_Mozilla_RawNet2(base_dir="Standardized_full_data/new_evaluation_wav")
 dataloader = DataLoader(dataset, batch_size=16, shuffle=False, num_workers=0, collate_fn=collate_fn)
 
 # === Perform Inference and Save Scores ===
@@ -75,11 +75,11 @@ with torch.no_grad():
         outputs = Net(batch_x)  # Forward pass
 
         probs = torch.exp(outputs)  # Convert log-softmax outputs to probabilities
-        scores = probs[:, 1].cpu().numpy()  # Extract spoof probability
+        scores = probs[:, 1].cpu().numpy()  # Extract bonafide probability
 
 
         for file_name, score in zip(file_names, scores):
-            results.append({"wav_path": file_name, "prediction_score": score})
+            results.append({"wav_path": file_name, "bonafide_prediction_score": score})
 
 # === Save Predictions to CSV ===
 df = pd.DataFrame(results)
