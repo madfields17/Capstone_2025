@@ -26,9 +26,10 @@ real_metadata = pd.read_csv("Standardized_full_data/real-metadata.csv") # "../..
 tssdnet_model_path = Path("Standardized_full_data/Res_TSSDNet_time_frame_61_ASVspoof2019_LA_Loss_0.0017_dEER_0.74%_eEER_1.64%.pth") # "Res_TSSDNet_time_frame_61_ASVspoof2019_LA_Loss_0.0017_dEER_0.74%_eEER_1.64%.pth
 
 # === Merge Metadata ===
+real_metadata = real_metadata.rename(columns={"file_name": "Filename"})
 metadata = pd.concat([spoof_metadata, real_metadata], ignore_index=True)
-metadata = metadata[['file_name', 'spoof_or_real', 'train_or_val']]
-metadata['file_name'] = metadata['file_name'].apply(lambda x: Path(x).with_suffix('.wav').name)
+metadata = metadata[['Filename', 'spoof_or_real', 'train_or_val']]
+metadata['Filename'] = metadata['Filename'].apply(lambda x: Path(x).with_suffix('.wav').name)
 
 # === Custom Dataset ===
 class DeepfakeAudioDataset(Dataset):
@@ -42,7 +43,7 @@ class DeepfakeAudioDataset(Dataset):
     def __getitem__(self, idx):
         row = self.df.iloc[idx]
         label = 1 if row['spoof_or_real'] == "spoof" else 0 # Spoof has label of 1. 
-        file_path = self.base_path / row['file_name']
+        file_path = self.base_path / row['Filename']
         if not file_path.exists():
             print(f"Missing file: {file_path}")
             return torch.zeros(64600), label, 64600 
