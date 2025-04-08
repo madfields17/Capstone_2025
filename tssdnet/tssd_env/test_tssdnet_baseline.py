@@ -22,21 +22,15 @@ merge_output_file = Path("../baseline-updated-results/final-results-tssd.csv")
 tssdnet_model_path = Path("Res_TSSDNet_time_frame_61_ASVspoof2019_LA_Loss_0.0017_dEER_0.74%_eEER_1.64%.pth")
 
 # === Load Pretrained TSSDNet Model ===
-def load_model(model_name: str):
-    if model_name == "ResTSSDNetModel":
-        res_tssdnet_model = SSDNet1D()  # Use the dictionary directly
-        check_point = torch.load(tssdnet_model_path, map_location=torch.device('cpu'))
-        res_tssdnet_model.load_state_dict(check_point['model_state_dict'])
-        res_tssdnet_model = res_tssdnet_model.to('cpu')
-        print(f'res_tssdnet_model model loaded: {res_tssdnet_model}')
-        
-        # Print number of parameters
-        nb_params = sum(p.numel() for p in res_tssdnet_model.parameters())
-        print(f"Number of res_tssdnet_model params: {nb_params}")
+def load_model():
+    res_tssdnet_model = SSDNet1D()  # Use the dictionary directly
+    check_point = torch.load(tssdnet_model_path, map_location=torch.device('cpu'))
+    res_tssdnet_model.load_state_dict(check_point['model_state_dict'])
+    res_tssdnet_model = res_tssdnet_model.to(device)
+    print(f'res_tssdnet_model model loaded: {res_tssdnet_model}')
+    return res_tssdnet_model
 
-        return res_tssdnet_model
-
-Net = load_model("ResTSSDNetModel")
+Net = load_model()
 Net.eval()
 
 # === Custom Collate Function for Variable-Length Audio ===
@@ -70,17 +64,11 @@ with torch.no_grad():
         batch_x = tuple(batch_x)
         batch_x = torch.stack(batch_x).unsqueeze(1).to(device)  # Correct way to batch tensors
         outputs = Net(batch_x)  # Forward pass
-
-        # Swap the logits (reverse order)
-        outputs = outputs[:, [1, 0]]
-
         probs = F.softmax(outputs, dim=1)  # Compute probabilities
-        standardized_scores = probs[:, 1].cpu().numpy()  # Extract bonafide probability (now correctly reversed)
-
-
+        standardized_scores = probs[:, 1].cpu().numpy()  # Extract spoof probability
 
         for file_name, score in zip(file_names, standardized_scores):
-            results.append({"wav_path": file_name, "prediction_score": score})
+            results.append({"wav_path": file_name, "spoof_score": score})
 
 # === Save Predictions to CSV ===
 df = pd.DataFrame(results)
