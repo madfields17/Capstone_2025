@@ -3,8 +3,8 @@ from pathlib import Path
 
 # Define paths
 metadata_file = Path("../../datasets/evaluation-data/evaluation-metadata.csv")
-results_file = Path("../baseline-updated-results/tssd-evaluation-results.csv")
-output_file = Path("../baseline-updated-results/final-results-tssd.csv")
+results_file = Path("../finetuned-results/tssd-evaluation-results.csv")
+output_file = Path("../finetuned-results/final-results-tssd.csv")
 
 # Load metadata
 metadata = pd.read_csv(metadata_file)

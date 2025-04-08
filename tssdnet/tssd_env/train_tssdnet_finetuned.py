@@ -94,8 +94,8 @@ criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 swa_model = AveragedModel(model)
 swa_scheduler = SWALR(optimizer, swa_lr=5e-5)
-swa_start = 2 # 30
-num_epochs = 3 # 75
+swa_start = 1 # 30
+num_epochs = 2 # 75
 
 # === Function to Compute EER and Threshold ===
 def compute_eer(y_true, y_score):
@@ -143,6 +143,8 @@ for epoch in range(num_epochs):
     with torch.no_grad():
         for batch_x, batch_y in tqdm(val_loader, desc=f"[Epoch {epoch+1}] Validation"):
             outputs = model(batch_x)
+            # Swap the logits (reverse order)
+            outputs = outputs[:, [1, 0]]
             loss = criterion(outputs, batch_y)
             probs = torch.softmax(outputs, dim=1)[:, 1]  # Spoof prob
 
