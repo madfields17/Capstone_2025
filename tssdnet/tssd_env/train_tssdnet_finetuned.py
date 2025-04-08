@@ -7,7 +7,7 @@ import torch.nn.functional as F
 import torchaudio
 import yaml
 
-from data_utils import Dataset_Mozilla_TSSD,Dataset_Mozilla_RawNet2 #, collate_fn
+from data_utils import Dataset_Mozilla_TSSD,Dataset_Mozilla_RawNet2
 from model import  DownStreamLinearClassifier, RawNetEncoderBaseline, RawNetBaseline, SSDNet1D, SAMOArgs  # SSDNet is the Res-TSSDNet Model
 from pathlib import Path
 from sklearn.metrics import roc_curve
@@ -20,10 +20,10 @@ from tqdm import tqdm
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # === Paths ===
-data_dir = Path("../../datasets/training-data") # "Standardized_full_data"
-spoof_metadata = pd.read_csv("../../datasets/training-data/spoof-metadata.csv") # "Standardized_full_data/spoof-metadata.csv"
-real_metadata = pd.read_csv("../../datasets/training-data/real-metadata.csv") # "Standardized_full_data/real-metadata.csv"
-tssdnet_model_path = Path("Res_TSSDNet_time_frame_61_ASVspoof2019_LA_Loss_0.0017_dEER_0.74%_eEER_1.64%.pth") # "Standardized_full_data/Res_TSSDNet_time_frame_61_ASVspoof2019_LA_Loss_0.0017_dEER_0.74%_eEER_1.64%.pth
+data_dir = Path("Standardized_full_data") # "../../datasets/training-data"
+spoof_metadata = pd.read_csv("Standardized_full_data/spoof-metadata.csv") # "../../datasets/training-data/spoof-metadata.csv"
+real_metadata = pd.read_csv("Standardized_full_data/real-metadata.csv") # "../../datasets/training-data/real-metadata.csv"
+tssdnet_model_path = Path("Standardized_full_data/Res_TSSDNet_time_frame_61_ASVspoof2019_LA_Loss_0.0017_dEER_0.74%_eEER_1.64%.pth") # "Res_TSSDNet_time_frame_61_ASVspoof2019_LA_Loss_0.0017_dEER_0.74%_eEER_1.64%.pth
 
 # === Merge Metadata ===
 real_metadata = real_metadata.rename(columns={"file_name": "Filename"})
@@ -94,8 +94,8 @@ criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 swa_model = AveragedModel(model)
 swa_scheduler = SWALR(optimizer, swa_lr=5e-5)
-swa_start = 1 # 30
-num_epochs = 2 # 75
+swa_start = 30 # 1
+num_epochs = 75 # 2
 
 # === Function to Compute EER and Threshold ===
 def compute_eer(y_true, y_score):
@@ -120,6 +120,8 @@ for epoch in range(num_epochs):
 
     for batch_x, batch_y in tqdm(train_loader, desc=f"[Epoch {epoch+1}] Training"):
         outputs = model(batch_x)
+        # Swap the logits (reverse order)
+        outputs = outputs[:, [1, 0]]
         loss = criterion(outputs, batch_y)
 
         optimizer.zero_grad()

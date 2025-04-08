@@ -19,7 +19,7 @@ metadata_file = Path("../../datasets/evaluation-data/evaluation-metadata.csv")
 wav_dir = Path("../../datasets/evaluation-data/evaluation-set")
 output_file = Path("../finetuned-results/tssd-evaluation-results.csv")
 merge_output_file = Path("../finetuned-results/final-results-tssd.csv")
-checkpoint_path = Path("swa_tssdnet.pth")
+checkpoint_path = Path("saved_checkpoints/epoch_2_EER_0.1709.pth")
 
 # === Load Pretrained TSSDNet Model ===
 model = SSDNet1D()
