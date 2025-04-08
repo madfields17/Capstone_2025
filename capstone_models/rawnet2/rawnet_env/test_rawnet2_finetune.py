@@ -73,8 +73,11 @@ print(f"Loaded model from {checkpoint_path}")
 
 # === Load Best Threshold ===
 with open(threshold_path, 'r') as f:
-    best_threshold = float(f.read().strip())
-print(f"Loaded best threshold: {best_threshold:.4f}")
+    spoof_threshold = float(f.read().strip())
+
+# Since probs[:, 1] is bonafide prob now, flip spoof threshold
+best_threshold = 1 - spoof_threshold
+print(f"Loaded spoof threshold: {spoof_threshold:.4f} → using bonafide threshold: {best_threshold:.4f}")
 
 # === Run Inference ===
 y_true, y_pred, y_scores, filenames = [], [], [], []
@@ -149,8 +152,8 @@ summary_csv = pd.concat([
     gender_metrics.assign(Group="gender"),
     region_metrics.assign(Group="region")
 ])
-summary_csv.to_csv("summary_group_metrics_finetuned.csv", index=False)
-print("\nSaved summary metrics to summary_group_metrics_finetuned.csv")
+summary_csv.to_csv("summary_group_metrics_finetuned_3.csv", index=False)
+print("\nSaved summary metrics to summary_group_metrics_finetuned_3.csv")
 
 # === Visualization ===
 def plot_group_metrics(df, group_col):
@@ -168,5 +171,5 @@ plot_group_metrics(region_metrics, "region")
 print("Saved TNR/FPR plots by gender and region.")
 
 # === Save detailed results ===
-merged_df.to_csv("evaluation_results_real_test_set_finetuned.csv", index=False)
-print("Saved detailed results to evaluation_results_real_test_set_finetuned.csv")
+merged_df.to_csv("evaluation_results_real_test_set_finetuned_3.csv", index=False)
+print("Saved detailed results to evaluation_results_real_test_set_finetuned_3.csv")
