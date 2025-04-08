@@ -24,7 +24,8 @@ checkpoint_path = Path("../finetune-2/")
 # === Load Pretrained TSSDNet Model ===
 model = SSDNet1D()
 check_point = torch.load(checkpoint_path, map_location=device)
-model.load_state_dict(check_point).to(device)
+model.load_state_dict(check_point)
+model = model.to(device)
 print(f"Loaded model from {checkpoint_path}")
 
 # === Custom Collate Function for Variable-Length Audio ===

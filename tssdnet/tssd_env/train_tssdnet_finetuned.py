@@ -83,7 +83,8 @@ val_loader = DataLoader(val_dataset, batch_size=16, shuffle=False, collate_fn=co
 # === Load Pretrained TSSDNet Model ===
 model = SSDNet1D()
 check_point = torch.load(tssdnet_model_path, map_location=device)
-model.load_state_dict(check_point['model_state_dict']).to(device)
+model.load_state_dict(check_point['model_state_dict'])
+model = model.to(device)
 print(f'Res-TSSDNet model loaded: {model}')
 
 # === Set Up Training ===
