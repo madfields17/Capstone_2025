@@ -20,7 +20,8 @@ data_dir = Path("Standardized_full_data/new_evaluation_wav")
 metadata = pd.read_csv("Standardized_full_data/new_evaluation_metadata.csv")
 config_path = Path("model_config_RawNet.yaml")
 # checkpoint_path = Path("finetuned_rawnet2_epoch10.pth")
-checkpoint_path = Path("swa_rawnet2_2.pth")
+#checkpoint_path = Path("swa_rawnet2_2.pth")
+checkpoint_path = Path("saved_checkpoints_2/epoch_65_EER_0.0400.pth")
 threshold_path = Path("best_threshold_2.txt")
 
 # metadata['file_name'] = metadata['file_name'].apply(lambda x: x if x.endswith('.wav') else x + '.wav')
@@ -149,8 +150,8 @@ summary_csv = pd.concat([
     gender_metrics.assign(Group="gender"),
     region_metrics.assign(Group="region")
 ])
-summary_csv.to_csv("summary_group_metrics_finetuned_2.csv", index=False)
-print("\nSaved summary metrics to summary_group_metrics_finetuned_2.csv")
+summary_csv.to_csv("summary_group_metrics_finetuned_4.csv", index=False)
+print("\nSaved summary metrics to summary_group_metrics_finetuned_4.csv")
 
 # === Visualization ===
 def plot_group_metrics(df, group_col):
@@ -168,5 +169,5 @@ plot_group_metrics(region_metrics, "region")
 print("Saved TNR/FPR plots by gender and region.")
 
 # === Save detailed results ===
-merged_df.to_csv("evaluation_results_real_test_set_finetuned_2.csv", index=False)
-print("Saved detailed results to evaluation_results_real_test_set_finetuned_2.csv")
+merged_df.to_csv("evaluation_results_real_test_set_finetuned_4.csv", index=False)
+print("Saved detailed results to evaluation_results_real_test_set_finetuned_4.csv")
