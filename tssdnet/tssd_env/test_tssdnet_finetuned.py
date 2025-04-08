@@ -17,9 +17,9 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # === Define Paths ===
 metadata_file = Path("../../datasets/evaluation-data/evaluation-metadata.csv")
 wav_dir = Path("../../datasets/evaluation-data/evaluation-set")
-output_file = Path("../finetuned-results/tssd-evaluation-results.csv")
-merge_output_file = Path("../finetuned-results/final-results-tssd.csv")
-checkpoint_path = Path("saved_checkpoints/epoch_2_EER_0.1709.pth")
+output_file = Path("../finetune-1/tssd-evaluation-results.csv")
+merge_output_file = Path("../finetune-1/final-results-tssd.csv")
+checkpoint_path = Path("../finetune-1/epoch_62_EER_0.0540.pth")
 
 # === Load Pretrained TSSDNet Model ===
 model = SSDNet1D()
