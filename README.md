@@ -1,6 +1,6 @@
 ## Welcome to My Branch!
 
-Hello there! Thanks for stopping by. This is the working branch for my contributions to the Capstone 2025 project. Below you'll find a quick guide to help you navigate the key folders and understand what's inside.
+Hello there! Thanks for stopping by. This is the working branch for my contributions to our capstone project. Below you'll find a quick guide to help you navigate the key folders and understand what's inside.
 
 ## 📂 Folder Breakdown
 
