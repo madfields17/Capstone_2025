@@ -15,11 +15,11 @@ from tqdm import tqdm
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # === Define Paths ===
-metadata_file = Path("../../datasets/evaluation-data/evaluation-metadata-standardized.csv")
-wav_dir = Path("../../datasets/evaluation-data/evaluation-set-standardized")
-output_file = Path("../finetune-2/tssd-evaluation-results-standardized.csv")
-merge_output_file = Path("../finetune-2/final-results-tssd-standardized.csv")
-checkpoint_path = Path("../finetune-2/swa_tssdnet.pth")
+metadata_file = Path("../../datasets/evaluation-data/evaluation-metadata.csv")
+wav_dir = Path("../../datasets/evaluation-data/evaluation-set")
+output_file = Path("../finetuned-model/tssd-evaluation-results.csv")
+merge_output_file = Path("../finetuned-model/final-results-tssd.csv")
+checkpoint_path = Path("../finetuned-model/swa_tssdnet.pth")
 
 # === Load Pretrained TSSDNet Model ===
 model = SSDNet1D()

@@ -15,10 +15,10 @@ from tqdm import tqdm
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # === Define Paths ===
-metadata_file = Path("../../datasets/evaluation-data/evaluation-metadata-standardized.csv")
-wav_dir = Path("../../datasets/evaluation-data/evaluation-set-standardized")
-output_file = Path("../baseline-updated-results/tssd-evaluation-results-standardized.csv")
-merge_output_file = Path("../baseline-updated-results/final-results-tssd-standardized.csv")
+metadata_file = Path("../../datasets/evaluation-data/evaluation-metadata.csv")
+wav_dir = Path("../../datasets/evaluation-data/evaluation-set")
+output_file = Path("../baseline-model/tssd-evaluation-results.csv")
+merge_output_file = Path("../baseline-model/final-results-tssd.csv")
 tssdnet_model_path = Path("Res_TSSDNet_time_frame_61_ASVspoof2019_LA_Loss_0.0017_dEER_0.74%_eEER_1.64%.pth")
 
 # === Load Pretrained TSSDNet Model ===
