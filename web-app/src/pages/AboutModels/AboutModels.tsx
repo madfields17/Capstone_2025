@@ -4,7 +4,7 @@ const AboutModels: React.FC = () => {
   return (
     <div>
       <h2>About the Models</h2>
-      <h3>Introduction to Models</h3>
+      <h3>Introduction to the Models</h3>
       <p>For our deepfake audio detection, we tested three state-of-the-art model architectures, each chosen for their ability to process audio in an end-to-end fashion without relying on traditional hand-crafted feature engineering. These models represent cutting-edge designs capable of detecting subtle spectral and temporal discrepancies between real and spoofed audio.</p>
       <p>Each of the models we selected leverages different advanced techniques to extract and classify important features from raw audio data:</p>
       <ul style={{
