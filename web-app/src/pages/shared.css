@@ -34,3 +34,10 @@ p {
   height: 700px !important;
   display: block;
 }
+
+.fpr-image {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}

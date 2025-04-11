@@ -20,6 +20,26 @@ const AboutModels: React.FC = () => {
       </ul>
       <p>These models use CNNs, RNNs, and Attention layers and are specifically built to discern intricate patterns and irregularities in audio data, making them highly effective in identifying deepfake audio samples.</p>
       <h3>Model Performance and Fine-Tuning Results</h3>
+      <p>For this project, we focused on achieving equality of odds by ensuring equal False Positive Rates (FPRs) across different accents and gender identities. Our goal is to make sure no group is unfairly flagged as a deepfake due to model bias.</p>
+      <p>We analyzed FPRs for each demographic group, both before and after fine-tuning our models on a curated training set. To measure fairness, we calculated the Mean Absolute Deviation (MAD) of FPRs, which captures how much each group's FPR deviates from the average. Lower MAD scores indicate more consistent, fairer results across accents and genders.</p>
+      <p>Please see our results for each model below.</p>
+      <p><strong>AASIST/AASIST-L</strong></p>
+      <p>Below, we show the False Positive Rate (FPR) for each accent group before and after fine-tuning the models. As seen in the visualization, the number of false positives decreased significantly. For the AASIST model, the MAD score across accent categories decreased from 0.0839 to 0.0528, indicating a more consistent performance across groups. For the AASIST-L model, the MAD score across accent categories decreased from 0.0737 to 0.0583, indicating a more consistent performance across groups.</p>
+      <img className="fpr-image"/>
+      <p>Below, we show the False Positive Rate (FPR) for each gender group before and after fine-tuning the models. As seen in the visualization, the number of false positives decreased significantly. For the AASIST model, the MAD score across gender categories [increased/decreased] from ___ to ___, indicating a [more/less] consistent performance across groups. For the AASIST-L model, the MAD score across gender categories [increased/decreased] from ___ to ___, indicating a [more/less] consistent performance across groups.</p>
+      <img className="fpr-image"/>
+      <p><strong>RawNet2</strong></p>
+      <p>Below, we show the False Positive Rate (FPR) for each accent group before and after fine-tuning the model. As seen in the visualization, the number of false positives decreased significantly. The MAD score across accent categories decreased from 0.0801 to 0.0379, indicating a more consistent performance across groups.</p>
+      <img className="fpr-image"/>
+      <p>Below, we show the False Positive Rate (FPR) for each gender group before and after fine-tuning the model. As seen in the visualization, the number of false positives decreased significantly. The MAD score across gender categories increased from 0.014 to 0.015, indicating a less consistent performance across groups.</p>
+      <img className="fpr-image"/>
+      <p><strong>Res-TSSDNet</strong></p>
+      <p>Below, we show the False Positive Rate (FPR) for each accent group before and after fine-tuning the model. As seen in the visualization, the number of false positives decreased significantly. The MAD score across accent categories increased from 0.0348 to 0.1227, indicating a less consistent performance across groups.</p>
+      <img src={'/images/res-tssdnet-accent.png'} className="fpr-image"/>
+      <p>Below, we show the False Positive Rate (FPR) for each gender group before and after fine-tuning the model. As seen in the visualization, the number of false positives decreased significantly. The MAD score across gender categories decreased from 0.0316 to 0.0038, indicating a more consistent performance across groups.</p>
+      <img src={'/images/res-tssdnet-gender.png'} className="fpr-image"/>
+      <h3>Best Model</h3>
+      <p>Reasoning here.</p>
     </div>
   );
 };
