@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
-import Home from './pages/Home'; // Your components
+import Home from './pages/Home'; 
 import TrainingData from './pages/TrainingData';
 import EvaluationData from './pages/EvaluationData';
 import AboutModels from './pages/AboutModels';

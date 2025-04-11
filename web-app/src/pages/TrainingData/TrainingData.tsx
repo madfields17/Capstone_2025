@@ -13,7 +13,13 @@ const TrainingData: React.FC = () => {
       <TableauVisualization/>
       <h3>Data Sources</h3>
       <p>To match the distribution found in existing research, we used a real-to-spoof data split of 37% real data and 63% spoofed data. Once the real data was balanced across accent and gender, we generated the spoof data to mirror this distribution, further minimizing bias.</p>
-      <ul>
+      <ul style={{
+        color: '#33312e',
+        margin: '0 auto',
+        marginBottom: '15px',
+        textAlign: 'justify',
+        width: '80%'
+      }}>
         <li><strong>Real Data (37% of total data):</strong> The real data was sourced from the Mozilla Common Voice Corpus, ASR Fairness dataset, Singapore National Speech Corpus, Fake-or-Real dataset (only real samples), In-the-Wild dataset (only real samples), and the Speech Accent dataset. To avoid data leakage, different speakers were used for the training and validation sets.</li>
         <li><strong>Spoof Data (63% of total data):</strong> The spoof data was generated using ElevenLab's TTS API. We ensured that different speakers were used for both the training and validation sets, and no speakers were repeated between the real and spoof data.</li>
       </ul>
