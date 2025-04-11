@@ -14,6 +14,8 @@ const EvaluationData: React.FC = () => {
       <p>For females, we used the Speech Accent Archive to provide samples from three key accent regions: Western Europe and South America, the Middle East, and East Asia. For males, we turned to the ASR Fairness dataset to include more samples from the Middle East and East Asia. This deliberate curation allowed us to maintain balance and diversity within our dataset, ensuring better representation of each accent and gender identity.</p>
       <h3>Data Preprocessing</h3>
       <p>After balancing the dataset, we standardized all audio files to match the preprocessing pipeline used for the training set. This included converting files to WAV format, using a mono channel, eliminating noise, trimming silence from the start and end of each clip, setting a sample rate of 16 kHz, maintaining a volume of 0 dBFS, and limiting the duration to 5 seconds.</p>
+      <h3>Data Partitioning</h3>
+      <p>The dataset consists of 792 WAV files, all of which were used exclusively in the test set.</p>
     </div>
   );
 };
