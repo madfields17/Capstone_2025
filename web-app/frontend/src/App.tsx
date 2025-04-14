@@ -7,12 +7,14 @@ import AboutModels from './pages/AboutModels';
 import DataUsagePrivacy from './pages/DataUsagePrivacy';
 import MeetTeam from './pages/MeetTeam';
 import './App.css';
+import Motivation from './pages/Motivation';
 
 const App: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string>('Home'); // Track the selected sidebar item.
 
   const menuItems = [
     'Home',
+    'Motivation',
     'Training Data',
     'Evaluation Data',
     'About the Models',
@@ -28,19 +30,21 @@ const App: React.FC = () => {
   const renderPageContent = () => {
     switch (selectedItem) {
       case 'Home':
-        return <Home />;
+        return <Home/>;
+      case 'Motivation':
+        return <Motivation/>
       case 'Training Data':
-        return <TrainingData />;
+        return <TrainingData/>;
       case 'Evaluation Data':
-        return <EvaluationData />;
+        return <EvaluationData/>;
       case 'About the Models':
-        return <AboutModels />;
+        return <AboutModels/>;
       case 'Data Usage and Privacy':
-        return <DataUsagePrivacy />;
+        return <DataUsagePrivacy/>;
       case 'Meet the Team':
-        return <MeetTeam />;
+        return <MeetTeam/>;
       default:
-        return <Home />;
+        return <Home/>;
     }
   };
 

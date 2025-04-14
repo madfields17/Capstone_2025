@@ -20,8 +20,8 @@ const TrainingData: React.FC = () => {
         textAlign: 'justify',
         width: '80%'
       }}>
-        <li><strong>Real Data (37% of total data):</strong> The real data was sourced from the Mozilla Common Voice Corpus, ASR Fairness dataset, Singapore National Speech Corpus, Fake-or-Real dataset (only real samples), In-the-Wild dataset (only real samples), and the Speech Accent dataset. To avoid data leakage, different speakers were used for the training and validation sets.</li>
-        <li><strong>Spoof Data (63% of total data):</strong> The spoof data was generated using ElevenLab's TTS API. We ensured that different speakers were used for both the training and validation sets, and no speakers were repeated between the real and spoof data.</li>
+        <li style={{marginBottom: '15px'}}><strong>Real Data (37% of total data):</strong> The real data was sourced from the Mozilla Common Voice Corpus, ASR Fairness dataset, Singapore National Speech Corpus, Fake-or-Real dataset (only real samples), In-the-Wild dataset (only real samples), and the Speech Accent dataset. To avoid data leakage, different speakers were used for the training and validation sets.</li>
+        <li style={{marginBottom: '15px'}}><strong>Spoof Data (63% of total data):</strong> The spoof data was generated using ElevenLab's TTS API. We ensured that different speakers were used for both the training and validation sets, and no speakers were repeated between the real and spoof data.</li>
       </ul>
       <h3>Data Preprocessing</h3>
       <p>After balancing the dataset, we standardized the data by converting all audio files to WAV format, using a mono channel, eliminating noise, trimming silence from the start and end of each clip, setting a sample rate of 16 kHz, keeping the volume at 0 dBFS, and limiting the duration to 5 seconds.</p>

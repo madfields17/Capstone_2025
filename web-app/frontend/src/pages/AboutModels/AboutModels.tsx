@@ -14,9 +14,9 @@ const AboutModels: React.FC = () => {
         textAlign: 'justify',
         width: '80%'
       }}>
-        <li><strong>AASIST/AASIST-L (Audio Anti-Spoofing using Integrated Spectro-Temporal Graph Attention Networks):</strong> A model utilizing attention mechanisms to focus on the most relevant features in the spectro-temporal domain, providing excellent performance for spoof detection.</li>
-        <li><strong>RawNet2</strong>: An end-to-end deep learning model that processes raw waveform data, learning both spectral and temporal patterns directly from the audio, without the need for pre-extracted features.</li>
-        <li><strong>Res-TSSDNet (Time-Domain Synthetic Speech Detection Network):</strong> A model designed to detect synthetic speech by analyzing the raw time-domain signal, enabling it to capture subtle artifacts that distinguish real from spoofed audio.</li>
+        <li style={{marginBottom: '15px'}}><strong>AASIST/AASIST-L (Audio Anti-Spoofing using Integrated Spectro-Temporal Graph Attention Networks):</strong> A model utilizing attention mechanisms to focus on the most relevant features in the spectro-temporal domain, providing excellent performance for spoof detection.</li>
+        <li style={{marginBottom: '15px'}}><strong>RawNet2</strong>: An end-to-end deep learning model that processes raw waveform data, learning both spectral and temporal patterns directly from the audio, without the need for pre-extracted features.</li>
+        <li style={{marginBottom: '15px'}}><strong>Res-TSSDNet (Time-Domain Synthetic Speech Detection Network):</strong> A model designed to detect synthetic speech by analyzing the raw time-domain signal, enabling it to capture subtle artifacts that distinguish real from spoofed audio.</li>
       </ul>
       <p>These models use CNNs, RNNs, and Attention layers and are specifically built to discern intricate patterns and irregularities in audio data, making them highly effective in identifying deepfake audio samples.</p>
       <h3>Model Performance and Fine-Tuning Results</h3>
