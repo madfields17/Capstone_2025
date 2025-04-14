@@ -12,8 +12,7 @@ def predict():
         return jsonify({"Error": "No audio file uploaded!"}), 400
     try:
         audio_file = request.files['audio']
-        audio_bytes = audio_file.read()
-        result = predict_from_audio_clip(audio_bytes)
+        result = predict_from_audio_clip(audio_file)
         return jsonify(result)
     except Exception as e:
         error_msg = str(e)

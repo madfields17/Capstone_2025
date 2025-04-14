@@ -25,8 +25,8 @@ def load_model(config: dict):
     return rawnet2_model
 
 # === Process Audio Clip ===
-def process_audio_clip(audio_data: bytes):
-    y = standardize_audio_from_bytes(audio_data)
+def process_audio_clip(audio_file):
+    y = standardize_audio_from_bytes(audio_file)
     waveform = torch.tensor(y, dtype=torch.float32).unsqueeze(0)
     with torch.no_grad():
         outputs = Net(waveform)
@@ -35,11 +35,11 @@ def process_audio_clip(audio_data: bytes):
     return score
 
 # === The function to call from the React frontend ===
-def predict_from_audio_clip(audio_data: bytes):
+def predict_from_audio_clip(audio_file):
     rawnet2_config = load_yaml_config()
     global Net
     Net = load_model(rawnet2_config)
-    prediction_score = process_audio_clip(audio_data)
+    prediction_score = process_audio_clip(audio_file)
     prediction = "Bona Fide" if prediction_score > THRESHOLD else "Spoofed"
     return {
         "Prediction": prediction,
