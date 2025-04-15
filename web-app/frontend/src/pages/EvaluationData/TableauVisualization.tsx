@@ -5,48 +5,46 @@ const TableauVisualization: React.FC = () => {
   const vizRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-    script.type = 'text/javascript';
-    script.onload = () => {
-      const vizElement = vizRef.current?.getElementsByTagName('object')[0];
-      if (vizElement) {
-        vizElement.style.display = 'block';
-        vizElement.style.width = '100%';
-        vizElement.style.height = '700px';
-      }
-    };
-    vizRef.current?.appendChild(script);
+    const vizElement = vizRef.current?.getElementsByTagName('object')[0];
+    if (vizElement && vizRef.current) {
+      vizElement.style.width = '100%';
+      vizElement.style.height = `${vizRef.current.offsetWidth * 0.75}px`;
+
+      const script = document.createElement('script');
+      script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      script.type = 'text/javascript';
+
+      vizElement.parentNode?.insertBefore(script, vizElement);
+    }
   }, []);
 
   return (
     <div className="tableau-container">
       <div
         className="tableauPlaceholder"
-        id="viz1744350440187"
+        id="viz1744756625080"
         ref={vizRef}
         style={{ position: 'relative' }}
       >
         <noscript>
           <a href="#">
             <img
-              alt="FairVoice Eval Dataset Distribution"
-              src="https://public.tableau.com/static/images/fa/fairvoiceevaldatasettest4/Sheet1/1_rss.png"
+              alt="FairVoice: Evaluation Set Distribution"
+              src="https://public.tableau.com/static/images/fa/fairvoiceevaltestlast/Sheet1/1_rss.png"
               style={{ border: 'none' }}
             />
           </a>
         </noscript>
-        <object className="tableauViz">
+        <object className="tableauViz" style={{ display: 'none' }}>
           <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F"/>
           <param name="embed_code_version" value="3"/>
-          <param
-            name="path"
-            value="views/fairvoiceevaldatasettest4/Sheet1?:language=en-US&amp;:embed=true&amp;:sid=&amp;:redirect=auth"
-          />
+          <param name="site_root" value=""/>
+          <param name="name" value="fairvoiceevaltestlast/Sheet1"/>
+          <param name="tabs" value="no"/>
           <param name="toolbar" value="yes"/>
           <param
             name="static_image"
-            value="https://public.tableau.com/static/images/fa/fairvoiceevaldatasettest4/Sheet1/1.png"
+            value="https://public.tableau.com/static/images/fa/fairvoiceevaltestlast/Sheet1/1.png"
           />
           <param name="animate_transition" value="yes"/>
           <param name="display_static_image" value="yes"/>
