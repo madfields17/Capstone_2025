@@ -14,8 +14,8 @@ Welcome to the main repository for **FairVoice**, a collaborative research and d
 
 📂 Key folders: `a_folder`, `a_folder`, `a_folder`
 
-### [`branch-name`](https://github.com/madfields17/Capstone_2025/tree/branch-name) – by Madison Fields
-**Focus:** A focus
+### [`madison-branch`](https://github.com/madfields17/Capstone_2025/tree/branch-name) – by Madison Fields
+**Focus:** Training set compliation, standardization of audio, creation of TTS deepfakes
 - A detail
 - A detail
 - A detail
